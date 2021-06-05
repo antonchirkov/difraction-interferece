@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  body{
+    display:block;
+    margin:0;
+    padding:0;
+    width:100vw;
+    height:100vh;
+    font-size:3.5vmin;
+    font-family: sans-serif;
+    -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none; user-select: none;
+    position:relative;
+  }
+  input{
+    margin:auto;
+  }
+  button{
+    font-size:14px;
+  }
+  .animation{
+    background:black;
+    display:flex;
+    height:380px;
+    width: 800px;
+  }
+  .slots{
+    width:20px;
+    height:5px;
+    background:black;
+    display:block;
+    position:absolute
+  }
+  .controlPanel{
+    background: #ddd;
+    display:flex;
+    height:140px;
+    width:800px;
+  }
+  .panelInput{
+    width:400px;
+    display: inline-block;
+    }
+  .inputValues{
+    align-items:center;
+    text-align: center;
+    display:block;
+    margin-bottom:5px;
+    margin-top:5px;
+    font-size:12px;
+  }
+  .inputAndChange{
+    display:inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left:10px;
+    margin-bottom: 8px;
+  }
+  .inputValue{
+    display:inline-block;
+    background: white;
+    width:40px;
+    height:23px;
+    line-height: 23px;
+    margin-top:0;
+    margin-right:-4px;
+    font-size:14px;
+  }
+  .changeValue{
+    display:inline-block;
+    width:20px;
+    margin-left:0;
+    height:25px;
+    border-radius:0 5px 5px 0;
+  }
+  .changeValueButtons{
+    background:#bbb;
+    font-size:8px;
+    height:12px;
+    line-height:15px;
+    display:block;
+    border-bottom: 1px solid #999;
+    border-radius:0 3px 3px 0;
+
+  }
+  .slotsChoice{
+    text-align:center;
+    margin:auto;
+    font-size:14px;
+    display:flex;
+    align-items: center;
+  }
+  .buttons{
+    display:inline-block;
+    text-align:center;
+    font-size:18px;
+    margin-left:auto;
+    margin-right:0;
+  }
+  .panelOutput{
+    width:400px;
+    height:140px;
+    display:inline-flex;
+    position:relative;
+    text-align: center;
+    align-items: center;
+  }
+  .outputvalue{
+    display:inline;
+  }
+  .unintsOnGraph{
+    width:5px;
+    height:2px;
+    position:absolute;
+    background: white;
+    left:-5px;
+  }
+  .foton{
+    position:absolute;
+    display:block;
+    left:0;
+    background:yellow;
+    height:1px;
+    width:1px;
+    z-index:2;
+  }
+  #slotsContainer{
+    height:56px;
+    color:white;
+    display:flex;
+    flex-direction: column;
+    margin: auto auto;
+    align-items: center;
+    position: relative;
+  }
+  #angle{
+    position:absolute;
+    left:5px;
+  }
+  @keyframes moving {
+  	0% { left:0; }
+  	100% { left:100px; }
+  }
+  </style>
+</head>
+<body>
+  <div class="animation">
+    <div  style="width:120px; display:inline-block;">
+      <div id='animationLeft' style="width:400px; height:300px; margin-top:30px; position:absolute;"></div>
+      <div style="background:#bbb; height:380px; width:20px; margin-left:auto; margin-right:0; vertical-align:middle; display:flex; flex-direction:column; z-index:1; position:relative;">
+        <div id="slotsContainer">
+        <div id="slot1" class="slots" style="top:50%; margin-top:-2.5px;"></div>
+        <br>
+        <div id="slot2" class="slots" style="position:absolute; bottom:0; display:none;"></div>
+      </div>
+      </div>
+    </div>
+    <div id="animationMiddle" style="width:430px; display:inline-block; position:relative;">
+      <div style="width:800px; height:1px; position:absolute; background:black; left:-395px; top:189px; transform:rotate(-20deg); z-index:0;">
+        <div style="width:400px;height:1px; background:white; z-index:1; margin-left:auto;"></div>
+      </div>
+      <div id="midleAxis" style="width:360px; height:3px; position:absolute; background:white; left:5px; top:189px; display:block;"></div>
+      <div style="position:absolute; color:white; top:333px; font-size:14px;left:-2px;">◄</div>
+      <div style="width:352px; height:3px; position:absolute; background:white; top:340px; left:4px;"></div>
+      <div style="position:absolute; color:white; left:355px; top:333px; font-size:14px;">►</div>
+          <div style="position:absolute; color:white; font-size:14px; top:350px; left:130px;">L = 1 m</div>
+      <div style="height:360px; width:54px; margin-left:auto; margin-right:0; margin-top:10px; display:flex; flex-direction:column; border: 1px solid white; z-index:1; position:relative; background:black;">
+      </div>
+    </div>
+    <div id="animationRight" style="width:260px; display:inline-block; position:relative;">
+      <div style="width:190px; height:3px; position:absolute; background:white; left:40px; top:189px;"></div>
+      <div style="position:absolute; color:white; left:228px; top:182.4px; font-size:14px;">►</div>
+      <div style="position:relative; display:block; height:360px; width:20px;font-size:14px; margin-left:20px; margin-top:10px; color:white;">
+        <div style="position:absolute; top:2px;">4</div>
+        <div style="position:absolute; top:42px;">3</div>
+        <div style="position:absolute; top:82px;">2</div>
+        <div style="position:absolute; top:122px;">1</div>
+        <div style="position:absolute; top:162px;">0</div>
+        <div style="position:absolute; top:202px;">-1</div>
+        <div style="position:absolute; top:242px;">-2</div>
+        <div style="position:absolute; top:282px;">-3</div>
+        <div style="position:absolute; top:322px;">-4</div>
+        <div style="height:360px; width:3px; background:white; margin-left:auto; margin-right:0; font-size:14px; position:relative;">
+          <div style="position:absolute; margin-top:-10px; margin-left:-5.5px; color:white;">▲</div>
+          <div class="unintsOnGraph" style="top:9px;"></div>
+          <div class="unintsOnGraph" style="top:49px;"></div>
+          <div class="unintsOnGraph" style="top:89px;"></div>
+          <div class="unintsOnGraph" style="top:129px;"></div>
+          <div class="unintsOnGraph" style="top:169px;"></div>
+          <div class="unintsOnGraph" style="top:209px;"></div>
+          <div class="unintsOnGraph" style=" top:249px;"></div>
+          <div class="unintsOnGraph" style="top:289px;"></div>
+          <div class="unintsOnGraph" style="top:329px;"></div>
+        </div>
+      </div>
+      <canvas id="functionGraph" width="250px" height="60"></canvas>
+    </div>
+  </div>
+  <div class="controlPanel">
+    <div class="panelInput">
+      <center style="font-size:16px; margin-top: 5px;">Входные параметры</center>
+      <div class="inputValues">
+        <div class="inputAndChange">
+          Размер щели (Δx) = <div class="inputValue" id="sizeField">3.0</div>
+          <div class="changeValue">
+          <div class="changeValueButtons" >▲</div>
+          <div class="changeValueButtons" onclick="if(Number(sizeField.innerHTML)>2 ){ sizeField.innerHTML=(Number(sizeField.innerHTML)-0.1).toFixed(1);}">▼</div>
+        </div>
+        </div>
+        10 <sup>-30</sup> м
+        <div class="inputAndChange">
+          Скорость (υ) = <div class="inputValue" id="frequencyField">0.01</div>
+          <div class="changeValue">
+          <div class="changeValueButtons">▲</div>
+          <div class="changeValueButtons">▼</div>
+        </div></div> с<br>
+        <div class="inputAndChange">
+        Расстояние (d) = <div class="inputValue" id="dimentionField">3.0</div>
+        <div class="changeValue">
+          <div class="changeValueButtons">▲</div>
+          <div class="changeValueButtons">▼</div>
+        </div></div>
+        10<sup>9</sup> м
+        <div class="inputAndChange">
+          Масса (m) = <div class="inputValue" id="frequencyField">10</div>
+          <div class="changeValue">
+          <div class="changeValueButtons">▲</div>
+          <div class="changeValueButtons">▼</div>
+        </div></div> m<sub>e</sub>
+      </div>
+      <div class="slotsChoice">
+      <form id="slotsChoice" style="margin-left:10px;">
+      <input type="radio" name="numberOfSlots" value="one" checked/> Одна щель
+      <input type="radio" name="numberOfSlots" value="two"/> Две щели
+    </form>
+    <div class="buttons">
+      <button name="start">Старт</button>
+      <button name="stop" disabled>Сброс</button>
+    </div>
+    </div>
+    </div>
+    <div class="panelOutput">
+      <div class="output" style="background:white; border-radius:5px; height:100px; width:260px; display:block; margin:0 auto; padding:10px; font-size:14px;">
+        Выходные параметры: <br>
+     λ=с/v=<div id="lambda" class="outputValue"></div>
+     L=1 <br>d*sin(θ<sub>k</sub>)=k*λ;
+      </div>
+    </div>
+  </div>
+  <script>
+  let playGame = false;
+  animation();
+  slotsChoice.onchange=function(e){
+    if (e.target.value == 'one'){
+      slot2.style.display = 'none';
+      slot1.style.top = '50%';
+      slot1.style.marginTop = '-2.5px';
+    }
+    else{
+      slot2.style.display = 'block';
+      slot1.style.top = '0';
+      slot1.style.marginTop = '0';
+    }
+  }
+  function calculator(){
+  }
+  function animation(){
+    if (playGame==false){
+      let timer = setTimeout(animation,280);
+      animationLeft.innerHTML="";
+      for (i=0; i<65; i++)
+      {
+        animationLeft.innerHTML = '<div class="foton"></div>' + animationLeft.innerHTML;
+        animationLeft.querySelector('.foton').style.top=randomInteger(0,100).toString()+"%";
+      }
+      let fotons = animationLeft.querySelectorAll('.foton');
+      fotons.forEach((foton) => {
+        setTimeout(moveFoton, randomInteger(0,250), foton, 0);
+      });
+  }}
+function moveFoton(foton, left){
+  if(Number(foton.style.left.slice(0,foton.style.left.length-2))>90) {
+    foton.style.display="none";
+    return;
+  }
+  else{
+  left=left+4;
+  foton.style.left=left.toString() + "px";}
+  setTimeout(moveFoton, 5, foton, left);
+}
+function randomInteger(min, max) {
+    let rand = min + Math.random() * (max + 1 - min);
+    return Math.floor(rand);
+}
+  </script>
+</body>
+</html>
